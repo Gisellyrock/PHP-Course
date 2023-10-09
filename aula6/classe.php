@@ -1,38 +1,61 @@
 <?php
 
-//convenções
+// PSRs / Convenções
 class UmaClasse extends stdClass
 {
-    //propriedades = variáveis
+    // propriedades = variáveis
     public string $atributo1;
 
     protected int $idade;
-    //ações / métodos
-    public function umaAcao(string $nome): array
+
+    // Ações / Métodos
+    public function umAcao(string $nome): array
     {
-        //uma acao aqui
-        return[];
+        // um ação aqui
+        return [];
+    }
+}
+
+// Aposta
+// Cliente > Jogo > Aposta > Pagamento
+
+// Liguagem Ebigua > A linguagem do cliente
+
+class Aposta
+{
+    // propriedade características
+    public float $valor;
+    public string $nomeJogo;
+    public array $numeros;
+
+    // são as ações
+    public function imprimir(): void
+    {
+        if (isset($this->valor) === false) {
+            // esta validando se valor foi preenchido
+            throw new Exception('Valor deve ser preenchido');
+        }
+        // $this refere-se a propria classe
+        echo "Valor da aposta: $this->valor <br>";
+        echo "Nome do Jogo: $this->nomeJogo <br>";
+
+        echo "Numeros: <br>";
+        foreach ($this->numeros as $numero) {
+            echo "<div>$numero</div>";
+        }
     }
 }
 
 
-class Aposta
-{
-    public float $valor;
-    public string $nomeJogo;
-    public array $numeros;
-}
-
-//criar as variáveis para guardar os dados da aposta
-//new - por que é uma nova aposta - instancicao - criar a classe de modo físico.
+// instanciação | criar a classe em modo físico 
 $aposta = new Aposta();
 $aposta->valor = 203.00;
-$aposta->nomeJoso = 'Mega Sena';
-$aposta ->numeros = [2, 3, 67, 23, 98, 23];
+$aposta->nomeJogo = 'Mega Sena';
+$aposta->numeros = [10, 3, 67, 23, 98, 23];
+$aposta->imprimir();
 
 $aposta2 = new Aposta();
-$aposta->valor = 15.00;
-$aposta->nomeJoso = 'Duplinha';
-$aposta ->numeros = [98, 23];
-
-var_dump($aposta, $aposta2);
+$aposta2->valor = 15.00;
+$aposta2->nomeJogo = 'Duplinha';
+$aposta2->numeros = [2, 3];
+$aposta2->imprimir();
